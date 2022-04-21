@@ -17,11 +17,11 @@ const nominaSchema = mongoose.Schema({
         required: true
     },
 
-    bonificaciones: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bonificacion' }],
+    // bonificaciones: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bonificacion' }],
 
-    monto: {
-        type: Number
-    }
+     monto: {
+         type: Number
+ }
 
 
 });
