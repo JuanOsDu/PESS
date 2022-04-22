@@ -15,8 +15,8 @@ app.use(parser.json());
 app.use("/api", nominaRoutes);
 app.use("/api", boificacionesRoutes);
 app.use("/api", empleadoRoutes);
+app.use('/api', require('./routes/users_routes'));
 app.use(express.json());
-
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("Conexion exitosa"))

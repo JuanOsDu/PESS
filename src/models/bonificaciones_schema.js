@@ -15,6 +15,7 @@ const bonificacionSchema = mongoose.Schema({
     descripcion: {
         type: String,
         required: true
+
     },
 
     porcentaje: {
