@@ -33,7 +33,5 @@ module.exports = mongoose.model('Nomina', nominaSchema);
 
     "fecha_fin_pago": "04/05/2022",
 
-    "deducciones": [],
-
     "bonificaciones": []
 }*/

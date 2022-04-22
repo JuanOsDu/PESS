@@ -30,9 +30,7 @@ router.get("/nomina/:id", (req, res) => {
 router.put("/nomina/:id", async (req, res) => {
     const { id } = req.params;
     const bonificacion = bonificacionSchema(req.body);
-    // const deduccion= deduccionSchema(req.body);
     var idBoni = null;
-    //var idDedu = null;
 
     const consultaBonificacion = await bonificacionSchema.findOne({ codigo: req.body.codigo });
     if (!consultaBonificacion) {
@@ -42,19 +40,10 @@ router.put("/nomina/:id", async (req, res) => {
     } else {
         idBoni = consultaBonificacion._id;
     }
-    /*
-        const consultaDedu = await deduccionSchema.findOne({ codigo: req.body.codigo });
-        if (!consultaDedu) {
-            await deduccion.save().then((dataDeduccion) => {
-                idDedu = dataDeduccion._id;
-            });
-        }else{
-            idDedu = consultaDedu._id;
-        }*/
 
     nominaSchema
         .updateOne({ _id: id }, {
-            $addToSet: { bonificaciones: idBoni } //, deducciones: idDedu
+            $addToSet: { bonificaciones: idBoni }
         })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
