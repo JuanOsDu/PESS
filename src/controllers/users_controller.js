@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const userSchema = require('../models/users_schema');
 const bcrypt = require('bcrypt');
+const { stringify } = require('nodemon/lib/utils');
 
 
 
@@ -20,9 +21,12 @@ try{
 
 const crearUsuario = async(req)=>{
     try{
+        req.body.contraseña = await bcrypt.hash(`\'${req.body.contraseña}\'`, 10);
+   
         const user = userSchema(req.body)
-        req.body.contraseña = await bcrypt.hash(req.body.contraseña, 10);
-        const usuario = await user.save().then((data)=>console.log(data)).catch((error)=>(console.log(error)));
+      
+
+        const usuario = await user.save().then((data)=>{return data}).catch((error)=>(console.log(error)));
         return usuario;
 
 
@@ -32,12 +36,15 @@ const crearUsuario = async(req)=>{
     }
 }
 
-
 const loginUsuario = async(req)=>{
     try{
-        const usuario = await userSchema.findOne({correo: req.body.correo}).catch((err)=>console.log(err));
-        return await bcrypt.compare(req.body.contraseña, usuario.contraseña);
-
+        const usuario = await userSchema.findOne({correo: req.body.correo}).then((data)=>{return data}).catch((err)=>console.log(err));
+        const pass =stringify(req.body.contraseña);
+        const passh =  usuario.contraseña
+        console.log(pass, passh)
+ 
+        const resp = await bcrypt.compare(pass, passh);
+        return resp;
     }catch(err){
         throw new Error("Error en loginUsuario");
     }

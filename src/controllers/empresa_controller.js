@@ -22,4 +22,19 @@ try{
 }
 
 
-module.exports = {mostrarEmpresas}
+const añadirEmpresa = async(req)=>{
+try{
+
+    const empresa = EmpresaSchema(req);
+    const empresaS = await empresa.save().then((data)=>console.log(data)).catch((err)=>console.log(err));
+    return empresaS
+
+}catch(err){
+    throw new Error("Error en añadir empresa");
+}
+
+
+
+}
+
+module.exports = {mostrarEmpresas, añadirEmpresa}

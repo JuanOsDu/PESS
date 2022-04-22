@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
         required: true
     },
     rol: {
-        type: Integer,
+        type: Number,
         required: true
     }
 

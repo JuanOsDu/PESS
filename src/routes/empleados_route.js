@@ -1,6 +1,5 @@
 const express = require("express");
-const jwt = require('jsonwebtoken');
-const verifyToken = require('./validate_token');
+
 const employe = require("../models/empleados_shema");
 const router = express.Router();
 const empleadoSchema = require("../models/empleados_shema");
@@ -10,25 +9,17 @@ router.post("/empleado", (req, res) => {
     const employee = empleadoSchema(req.body);
     employee
         .save()
-        .then((data) => res.json({auth: true,token}))
+        .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
-
-    const token = jwt.sign(
-        { id: employe._id },
-        process.env.SECRET,
-        {
-            expiresIn: 600 //10 minutos
-        }
-    );
 });
 
-router.get("/empleado", verifyToken,(req, res) => {
+router.get("/empleado", (req, res) => {
     empleadoSchema.find()
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
 
-router.get("/empleado/:id", verifyToken,(req, res) => {
+router.get("/empleado/:id", (req, res) => {
     const { id } = req.params;
     empleadoSchema
         .findById(id)
@@ -56,7 +47,7 @@ router.put("/empleado/:id", async (req, res) => {
             .catch((error) => res.json({ message: error }));
     }
 });
-router.delete("/empleado/:id", verifyToken,(req, res) => {
+router.delete("/empleado/:id", (req, res) => {
     const { id } = req.params;
     empleadoSchema
         .remove({ _id: id })
