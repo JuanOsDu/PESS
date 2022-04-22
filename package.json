@@ -1,7 +1,7 @@
 {
   "name": "pess",
   "version": "1.0.0",
-  "description": "trabajo nuevas tecnologias",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/JuanOsDu/PESS.git"
   },
-  "author": "Juan-Daniel-Esmeralda",
+  "author": "JUESDA",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JuanOsDu/PESS/issues"
@@ -19,10 +19,17 @@
   "homepage": "https://github.com/JuanOsDu/PESS#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+<<<<<<< HEAD
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.0",
     "nodemon": "^2.0.15"
+=======
+    "nodemon": "^2.0.15",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.3.0"
+>>>>>>> 11d76cee7f6290fe0a78e5ebb1afb9988be50834
   }
 }
