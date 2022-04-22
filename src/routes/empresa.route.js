@@ -30,8 +30,50 @@ router.get('/empresas', async (req, res) => {
 
 });
 
-router.post('/empresas', async(req, res)=>{
-    
+router.post('/empresas', async (req, res) => {
+    try {
+
+        const empresa = empresasC.añadirEmpresa(req);
+        if (empresa) {
+            return res.status(200).json({ message: "Empresa creada exitosamente", code: 1, empresa });
+        } else {
+            return res.status(400).json({ message: "Error al crear empresa", code: -1 })
+        }
+
+    } catch (err) {
+        return res.status(500).json({ message: "Error ruta", code: -1 });
+    }
+});
+
+
+router.delete('/empresas/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!id) {
+            return res.status(400).json({
+                message: "No se envio el id de la empresa",
+                code: -1
+            })
+        } else {
+            const empresa = await empresasC.borrarEmpresa(id);
+            if (empresa) {
+                return res.status(200).json({
+                    message: "Se elimino correctamente la empresa",
+                    code: 1
+                })
+            } else {
+                return res.status(400).json({
+                    message: "No se pudo eliminar la empresa",
+                    code: -1
+                })
+            }
+        }
+
+
+    } catch (err) {
+        return res.status(500).json({ message: "Error ruta", code: -1 });
+    }
+
 })
 
 

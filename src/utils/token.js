@@ -11,4 +11,19 @@ const verifyToken = (req, res, next) => {
         res.status(400).json({ error: 'El token no es válido' })
     }
 }
-module.exports = verifyToken;
+
+const generarToken= async(user) =>{
+    const tokenGenerado = jwt.sign(
+        {
+        
+        correo: user.correo,
+        id: user._id,
+        rol: user.rol
+        },
+        "" + process.env.SECRETPRIVATEKEY,
+        { expiresIn: '5h' }
+    ); 
+    return tokenGenerado;
+}
+
+module.exports = {verifyToken, generarToken};
