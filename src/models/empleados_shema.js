@@ -1,7 +1,14 @@
 const mongoose = require("mongoose");
 
 const empleadoSchema = mongoose.Schema({
-
+    usuario_id:{
+        type: String,
+        required: true
+    },
+    empresa_id:{
+        type:String,
+        required:true
+    },
     nombre: {
         type: String,
         required: true
