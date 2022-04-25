@@ -20,7 +20,7 @@ const generarToken= async(user) =>{
         id: user._id,
         rol: user.rol
         },
-        "" + process.env.SECRETPRIVATEKEY,
+        "" + process.env.SECRET,
         { expiresIn: '5h' }
     ); 
     return tokenGenerado;

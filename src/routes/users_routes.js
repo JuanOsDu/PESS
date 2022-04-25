@@ -50,7 +50,8 @@ router.post('/usuario', async (req, res) => {
             if (usuario) {
                 res.status(200).json({
                     message: "Se creo el usuario satisfactoriamente",
-                    code: 1
+                    code: 1,
+                    usuario
                 })
 
             } else {

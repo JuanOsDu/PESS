@@ -21,7 +21,7 @@ try{
 
 const crearUsuario = async(req)=>{
     try{
-        req.body.contraseña = await bcrypt.hash(`\'${req.body.contraseña}\'`, 10);
+        req.body.contraseña = await bcrypt.hash(`${req.body.contraseña}`, 10);
    
         const user = userSchema(req.body)
       
@@ -40,9 +40,8 @@ const loginUsuario = async(req)=>{
     try{
         const usuario = await userSchema.findOne({correo: req.body.correo}).then((data)=>{return data}).catch((err)=>console.log(err));
         const pass =stringify(req.body.contraseña);
-        const passh =  usuario.contraseña
-        console.log(pass, passh)
- 
+        const passh =  usuario.contraseña.toString()
+      
         const resp = await bcrypt.compare(pass, passh);
         return resp;
     }catch(err){
