@@ -3,6 +3,7 @@ const nomina = require("../models/nomina_schema");
 const router = express.Router();
 const nominaSchema = require("../models/nomina_schema");
 const bonificacionSchema = require("../models/bonificaciones_schema");
+const empleadosSchema = require("../models/empleados_shema");
 //const deduccionSchema = require("../models/deduccion_model");
 
 router.post("/nomina", (req, res) => {
@@ -10,7 +11,7 @@ router.post("/nomina", (req, res) => {
     nomina
         .save()
         .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }));
+        .catch((error) => res.json({ message: error })); 
 });
 
 router.get("/nomina", (req, res) => {
@@ -56,4 +57,5 @@ router.delete("/nomina/:id", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+
 module.exports = router;

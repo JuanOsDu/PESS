@@ -39,13 +39,13 @@ router.put("/empleado/:id", async (req, res) => {
         });
     } else {
         idNomina = consultaNomina._id;
+    }
         empleadoSchema
             .updateOne({ _id: id }, {
                 $addToSet: { nominas: idNomina }
             })
             .then((data) => res.json(data))
             .catch((error) => res.json({ message: error }));
-    }
 });
 router.delete("/empleado/:id", (req, res) => {
     const { id } = req.params;
@@ -54,4 +54,6 @@ router.delete("/empleado/:id", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+
+
 module.exports = router;
