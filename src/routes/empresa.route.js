@@ -7,7 +7,7 @@ router.get('/empresas', async (req, res) => {
 
         const empresas = await empresasC.mostrarEmpresas();
         if (empresas) {
-            res.status(200).json({
+           return res.status(200).json({
                 message: "Consulta exitosa",
                 code: 1,
                 empresas
@@ -29,7 +29,20 @@ router.get('/empresas', async (req, res) => {
 
 router.post('/empresas', async (req, res) => {
     try {
-
+        const {nombre, gerente} = req.body;
+        const campos = [
+            {name: "nombre",
+            value: nombre },
+            {name: "gerente",
+            value: gerente}
+                ]
+        const empty = campos.find((campo)=>{!campo.value});
+        if(empty){
+            return res.status(400).json({
+            message:"No ingreso los campos necesarios",
+                code: -1
+            })
+        }
         const empresa = empresasC.añadirEmpresa(req);
         if (empresa) {
             return res.status(200).json({ message: "Empresa creada exitosamente", code: 1, empresa });
