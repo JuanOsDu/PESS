@@ -17,10 +17,11 @@ const nominaSchema = mongoose.Schema({
         required: true
     },
 
-     bonificaciones: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bonificacion' }],
+    bonificaciones: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bonificacion' }],
 
      monto: {
-         type: Number
+         type: Number,
+         required: false
  }
 
 
@@ -32,6 +33,8 @@ module.exports = mongoose.model('Nomina', nominaSchema);
     "fecha_inicio_pago": "04/05/2003",
 
     "fecha_fin_pago": "04/05/2022",
+
+    "deducciones": [],
 
     "bonificaciones": []
 }*/

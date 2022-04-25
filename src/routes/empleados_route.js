@@ -1,4 +1,7 @@
 const express = require("express");
+const bonificaciones_schema = require("../models/bonificaciones_schema");
+const empleados_shema = require("../models/empleados_shema");
+
 
 const employe = require("../models/empleados_shema");
 const router = express.Router();
