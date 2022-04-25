@@ -1,5 +1,5 @@
 module.exports ={
     content: [
-        {text:"Hola socios", style: "header"}
+        {text:"Hola mundo", style: "header"}
     ]
 }
