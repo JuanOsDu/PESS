@@ -9,7 +9,10 @@ const mongoose = require("mongoose");
 const { application } = require("express");
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-
+const cors = require('cors');
+app.use(cors({
+    origin: 'http://localhost:3001'
+}));
 app.use(parser.urlencoded({ extended: false }));
 app.use(parser.json());
 app.use(express.json());
@@ -22,30 +25,30 @@ mongoose
 
 app.use('/api', require('./routes/users_routes'));
 
-app.use(function (req, res, next) {
-  const authHeader = req.headers.authorization;
+// app.use(function (req, res, next) {
+//   const authHeader = req.headers.authorization;
 
-  if (!authHeader) {
-    return res.status(403).json({
-      code: -3,
-      error: 'No está autorizado para realizar esta acción'
-    });
-  } else {
-    const token = authHeader.split(' ')[1];
+//   if (!authHeader) {
+//     return res.status(403).json({
+//       code: -3,
+//       error: 'No está autorizado para realizar esta acción'
+//     });
+//   } else {
+//     const token = authHeader.split(' ')[1];
 
-    jwt.verify(token, process.env.SECRET, function (err, user) {
-      if (err) {
-        return res.status(403).json({
-          code: -3,
-          error: 'No está autorizado para realizar esta acción'
-        });
-      } else {
-        next();
-      }
-    });
-  }
+//     jwt.verify(token, process.env.SECRET, function (err, user) {
+//       if (err) {
+//         return res.status(403).json({
+//           code: -3,
+//           error: 'No está autorizado para realizar esta acción'
+//         });
+//       } else {
+//         next();
+//       }
+//     });
+//   }
 
-});
+// });
 app.use("/api", nominaRoutes);
 app.use("/api", boificacionesRoutes);
 app.use("/api", empleadoRoutes);
