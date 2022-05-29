@@ -39,8 +39,8 @@ const crearUsuario = async(req)=>{
 const loginUsuario = async(req)=>{
     try{
         const usuario = await userSchema.findOne({correo: req.body.correo}).then((data)=>{return data}).catch((err)=>console.log(err));
-        const pass =stringify(req.body.contraseña);
-        const passh =  usuario.contraseña.toString()
+        const pass =req.body.contraseña;
+        const passh =  usuario.contraseña;
       
         const resp = await bcrypt.compare(pass, passh);
         return resp;

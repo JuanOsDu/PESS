@@ -9,13 +9,15 @@ router.post('/login', async (req, res) => {
         const login = await userC.loginUsuario(req);
         if (login) {
             const tokn = await token.generarToken(login);
+           
             return res.status(200).json({
+                
                 message: "Bienvenido a PESS",
                 code: 1,
                 toke: tokn
             })
         } else {
-            return res.status(400).json({
+            return res.status(401).json({
                 message: "No se pudo acceder al sistema, revise credenciales",
                 code: -2
             })
