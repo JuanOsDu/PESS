@@ -28,6 +28,10 @@ router.get("/nomina/:id", (req, res) => {
         .catch((error) => res.json({ message: error }));
 });
 
+
+
+
+
 router.put("/nomina/:id", async (req, res) => {
     const { id } = req.params;
     const bonificacion = bonificacionSchema(req.body);

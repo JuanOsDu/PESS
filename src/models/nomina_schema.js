@@ -17,13 +17,7 @@ const nominaSchema = mongoose.Schema({
         required: true
     },
 
-    bonificaciones: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bonificacion' }],
-
-     monto: {
-         type: Number,
-         required: false
- }
-
+    bonificaciones: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bonificacion' }]
 
 });
 module.exports = mongoose.model('Nomina', nominaSchema);

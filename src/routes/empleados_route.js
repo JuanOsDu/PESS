@@ -29,7 +29,7 @@ router.get("/calcular-nomina/:id_nomina/:id_empleado", async (req, res) => {
             .then((data) => { empleado = data[0] })
             .catch((error) => res.json({ message: error }));
 
-        let relacion = empleado.nominas.find((campo) => (campo == id_nomina)).toString();
+        let relacion =  empleado.nominas.find((campo) => (campo == id_nomina)).toString();
 
         if (!nomina || !empleado || !relacion) {
             return res.status(400).json({

@@ -28,7 +28,7 @@ router.get("/bonificaciones/:id", (req, res) => {
 
 router.put("/bonificaciones/:id", (req, res) => {
     const { id } = req.params;
-    const { descripcion, porcentaje } = req.params;
+    const { descripcion, porcentaje } = req.body;
     bonificacionSchema
         .updateOne({ _id: id }, {
             $set: { descripcion, porcentaje }
